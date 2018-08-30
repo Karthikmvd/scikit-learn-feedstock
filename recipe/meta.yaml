@@ -28,7 +28,7 @@ requirements:
     - python
     - cython
     - setuptools
-    - blas 1.1 {{ variant }}
+    - blas 
     - openblas
     - numpy
     - scipy
