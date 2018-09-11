@@ -10,6 +10,8 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: b276739a5f863ccacb61999a3067d0895ee291c95502929b2ae56ea1f882e888
+  patches:
+      - skip_test_gpc.patch  
 
 build:
   number: 201
@@ -47,8 +49,8 @@ test:
   imports:
     - sklearn
   commands:
-    - py.test --pyargs sklearn
-    - nosetests sklearn --exe  # [not ppc64le]
+    - pytest --pyargs sklearn
+    - nosetests sklearn --exe # [not ppc64le]
     - conda inspect linkages -p $PREFIX scikit-learn  # [not win]
     - conda inspect objects -p $PREFIX scikit-learn  # [osx]
 
